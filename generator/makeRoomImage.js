@@ -11,6 +11,9 @@ const {
 
 module.exports = async (room) => {
     const { id, description } = room;
+    const filename = `${IMAGE_FOLDER}/room-${id}.png`;
+    room.imageURL = `./images/room-${id}.png`;
+
     console.log(`Making room ${id}`);
     const image = await openai.images.generate({ 
       model: "dall-e-3", 
@@ -20,9 +23,6 @@ module.exports = async (room) => {
 
     const { url } = image.data[0];
     
-    const filename = `${IMAGE_FOLDER}/room-${id}.png`;
-    room.imageURL = `./images/room-${id}.png`;
-
     const file = fs.createWriteStream(filename);
     https.get(url, (response) => {
       response.pipe(file);

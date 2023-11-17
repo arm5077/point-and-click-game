@@ -64,31 +64,64 @@ body {
   
 }
 
+@media (max-width: 768px) {
+  .interactive-layer, img {
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+}
+
 .interactive-layer {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   gap: 16px;
+  transition: .2 all;
+}
+
+.interactive-layer.hints-on { 
+  background: rgba(0,0,0, .5)
 }
 
 .interaction-point {
   align-items: center;
   display: flex;
+  flex-direction: column;
+  gap: 4px;
   justify-content: center;
-  // position: absolute;
+  position: absolute;
   width: 100px;
   height: 100px;
-  // transform: translate(-50px, -50px);
-  opacity: 0;
+  transform: translate(-50px, -50px);
   transition: .25s all;
 }
 
-  .hints-on .interaction-point {
-    opacity: 1;
+  .interaction-point svg {
+    flex-shrink: 0;
   }
 
-.tooltip {
+  .interaction-point.north, .interaction-point.northwest {
+    top: 50px;
+    left: 50%;
+  }
+
+  .interaction-point.east {
+    top: 50%;
+    left: calc(100% - 50px);
+  }
+
+  .interaction-point.south {
+    top: calc(100% - 50px);
+    left: 50%;
+  }
+
+  .interaction-point.west {
+    top: 50%;
+    left: 50px;
+  }
+
+.tooltip, .label {
   background-color: white;
   font-size: 24px;
   left: -300px;
@@ -101,14 +134,41 @@ body {
   
 }
 
+.label {
+  position: relative;
+  left: 0;
+  font-size: 18px;
+  max-width: 100px;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .label {
+    display: none;
+  }
+
+  .hints-on .label {
+    display: block;
+  }
+}
+
+.hints-on .label {
+  display: block;
+}
+
 .tooltip.hidden {
   opacity: 0;
   transform: scale(0);
 }
 
-.tooltip-inner {
+.tooltip-inner, .label-inner {
   border: 1px solid black;
+  color: black;
   padding: 12px;
+}
+
+.label-inner {
+  padding: 4px;
 }
 
 .dialogue-box-wrapper {
@@ -130,25 +190,48 @@ body {
 
 .dialogue-box {
   background-color: black;
-  padding: 24px;
-  width: 640px;
+  padding: 16px;
+  max-width: 640px;
+  width: 90%;
 }
 
 .dialogue-box-inner {
   border: 1px solid white;
   display: flex;
   flex-direction: column;
-  font-size: 32px;
+  font-size: 18px;
   gap: 24px;
   align-items: flex-start;
-  padding: 24px;
+  padding: 16px;
 }
 
 .dialogue-box-inner button {
   background-color: white;
   border: 0;
+  color: black;
   display: inline-block;
   font-family: "VT323", monospace;
-  font-size: 24px;
+  font-size: 18px;
   padding: 8px 12px;
+}
+
+@media (min-width: 768px) {
+  .dialogue-box {
+    background-color: black;
+    padding: 24px;
+    max-width: 640px;
+    width: 90%;
+  }
+  
+  .dialogue-box-inner {
+    font-size: 32px;
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .dialogue-box-inner button {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
+  
 }

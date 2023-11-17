@@ -9,6 +9,7 @@ const renderRoom = (room = window.gameState.room) => {
   const interactiveLayer = document.querySelector('.interactive-layer');
 
   image.src = room.imageURL;
+  image.alt = room.description;
   title.textContent = room.name;
 
   interactiveLayer.innerHTML = '';

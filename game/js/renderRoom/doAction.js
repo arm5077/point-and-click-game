@@ -22,10 +22,10 @@ export default ({id, action}) => {
     text: result,
     buttonText: 'OK'
   }, () => {
-    if (id === window.gameState.data.winningAction.id) {
+    if (action.winningAction) {
       makeDialogue({
         text: `
-          ${window.gameState.data.winningAction.endingText}
+          ${window.gameState.data.winningText}
           <br /> <br />
           You have won!
         `,

@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const makeMap = require('./makeMap');
 const makeRoomImage = require('./makeRoomImage');
-const testImageAnalysis = require('./testImageAnalysis');
+
 
 const {
   DATA_FOLDER,
@@ -11,7 +11,6 @@ const {
 const analyzeImage = require('./analyzeImage');
 
 (async () => {
-  //await testImageAnalysis();
   console.log('Starting generation...');
 
   const data = await makeMap();
